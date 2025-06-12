@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<!-- No navbar for the home page -->
+{% endblock %}
+
+{% block content %}
+<!-- Blue Header -->
+<header style="background-color: #123c69; color: #ff914d; padding: 20px 0; text-align: center; width: 100%;">
+  <h1>The Firsts Summarizer</h1>
+</header>
+
+<div class="container my-5">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    {% for item in textsumm %}
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <!-- Link wraps image: clicking the image goes to the detail page -->
+          <a href="{% url 'view_text' item.pk %}">
+            <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}"
+                 style="width: 100%; height: auto; object-fit: contain;">
+          </a>
+          <!-- Card content -->
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ item.name }}</h5>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
